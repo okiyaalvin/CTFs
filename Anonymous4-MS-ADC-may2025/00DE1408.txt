@@ -1,0 +1,1036 @@
+00DE1408 > $ E8 C5030000                        CALL ReverseM.00DE17D2
+00DE140D   .^E9 74FEFFFF                        JMP ReverseM.00DE1286
+00DE1412  /$ 55                                 PUSH EBP
+00DE1413  |. 8BEC                               MOV EBP,ESP
+00DE1415  |. 6A 00                              PUSH 0                                                   ; /pTopLevelFilter = NULL
+00DE1417  |. FF15 0420DE00                      CALL DWORD PTR DS:[<&KERNEL32.SetUnhandledExceptionFilte>; \SetUnhandledExceptionFilter
+00DE141D  |. FF75 08                            PUSH DWORD PTR SS:[EBP+8]                                ; /pExceptionInfo
+00DE1420  |. FF15 2020DE00                      CALL DWORD PTR DS:[<&KERNEL32.UnhandledExceptionFilter>] ; \UnhandledExceptionFilter
+00DE1426  |. 68 090400C0                        PUSH C0000409                                            ; /ExitCode = C0000409 (-1073740791.)
+00DE142B  |. FF15 0820DE00                      CALL DWORD PTR DS:[<&KERNEL32.GetCurrentProcess>]        ; |[GetCurrentProcess
+00DE1431  |. 50                                 PUSH EAX                                                 ; |hProcess
+00DE1432  |. FF15 0C20DE00                      CALL DWORD PTR DS:[<&KERNEL32.TerminateProcess>]         ; \TerminateProcess
+00DE1438  |. 5D                                 POP EBP
+00DE1439  \. C3                                 RETN
+00DE143A   > 55                                 PUSH EBP
+00DE143B   . 8BEC                               MOV EBP,ESP
+00DE143D   . 81EC 24030000                      SUB ESP,324
+00DE1443   . 6A 17                              PUSH 17
+00DE1445   . FF15 1020DE00                      CALL DWORD PTR DS:[<&KERNEL32.IsProcessorFeaturePresent>>;  KERNEL32.IsProcessorFeaturePresent
+00DE144B   . 85C0                               TEST EAX,EAX
+00DE144D   . 74 05                              JE SHORT ReverseM.00DE1454
+00DE144F   . 6A 02                              PUSH 2
+00DE1451   . 59                                 POP ECX
+00DE1452   . CD 29                              INT 29
+00DE1454   > A3 6031DE00                        MOV DWORD PTR DS:[DE3160],EAX
+00DE1459   . 890D 5C31DE00                      MOV DWORD PTR DS:[DE315C],ECX
+00DE145F   . 8915 5831DE00                      MOV DWORD PTR DS:[DE3158],EDX
+00DE1465   . 891D 5431DE00                      MOV DWORD PTR DS:[DE3154],EBX
+00DE146B   . 8935 5031DE00                      MOV DWORD PTR DS:[DE3150],ESI
+00DE1471   . 893D 4C31DE00                      MOV DWORD PTR DS:[DE314C],EDI
+00DE1477   . 66:8C15 7831DE00                   MOV WORD PTR DS:[DE3178],SS
+00DE147E   . 66:8C0D 6C31DE00                   MOV WORD PTR DS:[DE316C],CS
+00DE1485   . 66:8C1D 4831DE00                   MOV WORD PTR DS:[DE3148],DS
+00DE148C   . 66:8C05 4431DE00                   MOV WORD PTR DS:[DE3144],ES
+00DE1493   . 66:8C25 4031DE00                   MOV WORD PTR DS:[DE3140],FS
+00DE149A   . 66:8C2D 3C31DE00                   MOV WORD PTR DS:[DE313C],GS
+00DE14A1   . 9C                                 PUSHFD
+00DE14A2   . 8F05 7031DE00                      POP DWORD PTR DS:[DE3170]
+00DE14A8   . 8B45 00                            MOV EAX,DWORD PTR SS:[EBP]
+00DE14AB   . A3 6431DE00                        MOV DWORD PTR DS:[DE3164],EAX
+00DE14B0   . 8B45 04                            MOV EAX,DWORD PTR SS:[EBP+4]
+00DE14B3   . A3 6831DE00                        MOV DWORD PTR DS:[DE3168],EAX
+00DE14B8   . 8D45 08                            LEA EAX,DWORD PTR SS:[EBP+8]
+00DE14BB   . A3 7431DE00                        MOV DWORD PTR DS:[DE3174],EAX
+00DE14C0   . 8B85 DCFCFFFF                      MOV EAX,DWORD PTR SS:[EBP-324]
+00DE14C6   . C705 B030DE00 01000100             MOV DWORD PTR DS:[DE30B0],10001
+00DE14D0   . A1 6831DE00                        MOV EAX,DWORD PTR DS:[DE3168]
+00DE14D5   . A3 6C30DE00                        MOV DWORD PTR DS:[DE306C],EAX
+00DE14DA   . C705 6030DE00 090400C0             MOV DWORD PTR DS:[DE3060],C0000409
+00DE14E4   . C705 6430DE00 01000000             MOV DWORD PTR DS:[DE3064],1
+00DE14EE   . C705 7030DE00 01000000             MOV DWORD PTR DS:[DE3070],1
+00DE14F8   . 6A 04                              PUSH 4
+00DE14FA   . 58                                 POP EAX
+00DE14FB   . 6BC0 00                            IMUL EAX,EAX,0
+00DE14FE   . C780 7430DE00 02000000             MOV DWORD PTR DS:[EAX+DE3074],2
+00DE1508   . 6A 04                              PUSH 4
+00DE150A   . 58                                 POP EAX
+00DE150B   . 6BC0 00                            IMUL EAX,EAX,0
+00DE150E   . 8B0D 0030DE00                      MOV ECX,DWORD PTR DS:[DE3000]
+00DE1514   . 894C05 F8                          MOV DWORD PTR SS:[EBP+EAX-8],ECX
+00DE1518   . 6A 04                              PUSH 4
+00DE151A   . 58                                 POP EAX
+00DE151B   . C1E0 00                            SHL EAX,0                                                ;  Shift constant out of range 1..31
+00DE151E   . 8B0D 4030DE00                      MOV ECX,DWORD PTR DS:[DE3040]
+00DE1524   . 894C05 F8                          MOV DWORD PTR SS:[EBP+EAX-8],ECX
+00DE1528   . 68 0021DE00                        PUSH ReverseM.00DE2100
+00DE152D   . E8 E0FEFFFF                        CALL ReverseM.00DE1412
+00DE1532   . 90                                 NOP
+00DE1533   . C9                                 LEAVE
+00DE1534   . C3                                 RETN
+00DE1535  /$ 55                                 PUSH EBP
+00DE1536  |. 8BEC                               MOV EBP,ESP
+00DE1538  |. 8B45 08                            MOV EAX,DWORD PTR SS:[EBP+8]
+00DE153B  |. 56                                 PUSH ESI
+00DE153C  |. 8B48 3C                            MOV ECX,DWORD PTR DS:[EAX+3C]
+00DE153F  |. 03C8                               ADD ECX,EAX
+00DE1541  |. 0FB741 14                          MOVZX EAX,WORD PTR DS:[ECX+14]
+00DE1545  |. 8D51 18                            LEA EDX,DWORD PTR DS:[ECX+18]
+00DE1548  |. 03D0                               ADD EDX,EAX
+00DE154A  |. 0FB741 06                          MOVZX EAX,WORD PTR DS:[ECX+6]
+00DE154E  |. 6BF0 28                            IMUL ESI,EAX,28
+00DE1551  |. 03F2                               ADD ESI,EDX
+00DE1553  |. EB 15                              JMP SHORT ReverseM.00DE156A
+00DE1555  |> 8B4A 0C                            /MOV ECX,DWORD PTR DS:[EDX+C]
+00DE1558  |. 394D 0C                            |CMP DWORD PTR SS:[EBP+C],ECX
+00DE155B  |. 72 0A                              |JB SHORT ReverseM.00DE1567
+00DE155D  |. 8B42 08                            |MOV EAX,DWORD PTR DS:[EDX+8]
+00DE1560  |. 03C1                               |ADD EAX,ECX
+00DE1562  |. 3945 0C                            |CMP DWORD PTR SS:[EBP+C],EAX
+00DE1565  |. 72 0C                              |JB SHORT ReverseM.00DE1573
+00DE1567  |> 83C2 28                            |ADD EDX,28
+00DE156A  |> 3BD6                                CMP EDX,ESI
+00DE156C  |.^75 E7                              \JNZ SHORT ReverseM.00DE1555
+00DE156E  |. 33C0                               XOR EAX,EAX
+00DE1570  |> 5E                                 POP ESI
+00DE1571  |. 5D                                 POP EBP
+00DE1572  |. C3                                 RETN
+00DE1573  |> 8BC2                               MOV EAX,EDX
+00DE1575  \.^EB F9                              JMP SHORT ReverseM.00DE1570
+00DE1577   $ 56                                 PUSH ESI
+00DE1578   . E8 D4080000                        CALL ReverseM.00DE1E51
+00DE157D   . 85C0                               TEST EAX,EAX
+00DE157F   . 74 20                              JE SHORT ReverseM.00DE15A1
+00DE1581   . 64:A1 18000000                     MOV EAX,DWORD PTR FS:[18]
+00DE1587   . BE 8033DE00                        MOV ESI,ReverseM.00DE3380
+00DE158C   . 8B50 04                            MOV EDX,DWORD PTR DS:[EAX+4]
+00DE158F   . EB 04                              JMP SHORT ReverseM.00DE1595
+00DE1591   > 3BD0                               CMP EDX,EAX
+00DE1593   . 74 10                              JE SHORT ReverseM.00DE15A5
+00DE1595   > 33C0                               XOR EAX,EAX
+00DE1597   . 8BCA                               MOV ECX,EDX
+00DE1599   . F0:0FB10E                          LOCK CMPXCHG DWORD PTR DS:[ESI],ECX                      ;  LOCK prefix
+00DE159D   . 85C0                               TEST EAX,EAX
+00DE159F   .^75 F0                              JNZ SHORT ReverseM.00DE1591
+00DE15A1   > 32C0                               XOR AL,AL
+00DE15A3   . 5E                                 POP ESI
+00DE15A4   . C3                                 RETN
+00DE15A5   > B0 01                              MOV AL,1
+00DE15A7   . 5E                                 POP ESI
+00DE15A8   . C3                                 RETN
+00DE15A9  /$ 55                                 PUSH EBP
+00DE15AA  |. 8BEC                               MOV EBP,ESP
+00DE15AC  |. 837D 08 00                         CMP DWORD PTR SS:[EBP+8],0
+00DE15B0  |. 75 07                              JNZ SHORT ReverseM.00DE15B9
+00DE15B2  |. C605 8433DE00 01                   MOV BYTE PTR DS:[DE3384],1
+00DE15B9  |> E8 66050000                        CALL ReverseM.00DE1B24
+00DE15BE  |. E8 73020000                        CALL ReverseM.00DE1836
+00DE15C3  |. 84C0                               TEST AL,AL
+00DE15C5  |. 75 04                              JNZ SHORT ReverseM.00DE15CB
+00DE15C7  |> 32C0                               XOR AL,AL
+00DE15C9  |. 5D                                 POP EBP
+00DE15CA  |. C3                                 RETN
+00DE15CB  |> E8 66020000                        CALL ReverseM.00DE1836
+00DE15D0  |. 84C0                               TEST AL,AL
+00DE15D2  |. 75 0A                              JNZ SHORT ReverseM.00DE15DE
+00DE15D4  |. 6A 00                              PUSH 0
+00DE15D6  |. E8 5B020000                        CALL ReverseM.00DE1836
+00DE15DB  |. 59                                 POP ECX
+00DE15DC  |.^EB E9                              JMP SHORT ReverseM.00DE15C7
+00DE15DE  |> B0 01                              MOV AL,1
+00DE15E0  |. 5D                                 POP EBP
+00DE15E1  \. C3                                 RETN
+00DE15E2   $ 55                                 PUSH EBP
+00DE15E3   . 8BEC                               MOV EBP,ESP
+00DE15E5   . 803D 8533DE00 00                   CMP BYTE PTR DS:[DE3385],0
+00DE15EC   . 74 04                              JE SHORT ReverseM.00DE15F2
+00DE15EE   . B0 01                              MOV AL,1
+00DE15F0   . 5D                                 POP EBP
+00DE15F1   . C3                                 RETN
+00DE15F2   > 56                                 PUSH ESI
+00DE15F3   . 8B75 08                            MOV ESI,DWORD PTR SS:[EBP+8]
+00DE15F6   . 85F6                               TEST ESI,ESI
+00DE15F8   . 74 05                              JE SHORT ReverseM.00DE15FF
+00DE15FA   . 83FE 01                            CMP ESI,1
+00DE15FD   . 75 62                              JNZ SHORT ReverseM.00DE1661
+00DE15FF   > E8 4D080000                        CALL ReverseM.00DE1E51
+00DE1604   . 85C0                               TEST EAX,EAX
+00DE1606   . 74 26                              JE SHORT ReverseM.00DE162E
+00DE1608   . 85F6                               TEST ESI,ESI
+00DE160A   . 75 22                              JNZ SHORT ReverseM.00DE162E
+00DE160C   . 68 8833DE00                        PUSH ReverseM.00DE3388
+00DE1611   . E8 D1080000                        CALL <JMP.&api-ms-win-crt-runtime-l1-1-0._initialize_one>
+00DE1616   . 59                                 POP ECX
+00DE1617   . 85C0                               TEST EAX,EAX
+00DE1619   . 75 0F                              JNZ SHORT ReverseM.00DE162A
+00DE161B   . 68 9433DE00                        PUSH ReverseM.00DE3394
+00DE1620   . E8 C2080000                        CALL <JMP.&api-ms-win-crt-runtime-l1-1-0._initialize_one>
+00DE1625   . 59                                 POP ECX
+00DE1626   . 85C0                               TEST EAX,EAX
+00DE1628   . 74 2B                              JE SHORT ReverseM.00DE1655
+00DE162A   > 32C0                               XOR AL,AL
+00DE162C   . EB 30                              JMP SHORT ReverseM.00DE165E
+00DE162E   > 83C9 FF                            OR ECX,FFFFFFFF
+00DE1631   . 890D 8833DE00                      MOV DWORD PTR DS:[DE3388],ECX
+00DE1637   . 890D 8C33DE00                      MOV DWORD PTR DS:[DE338C],ECX
+00DE163D   . 890D 9033DE00                      MOV DWORD PTR DS:[DE3390],ECX
+00DE1643   . 890D 9433DE00                      MOV DWORD PTR DS:[DE3394],ECX
+00DE1649   . 890D 9833DE00                      MOV DWORD PTR DS:[DE3398],ECX
+00DE164F   . 890D 9C33DE00                      MOV DWORD PTR DS:[DE339C],ECX
+00DE1655   > C605 8533DE00 01                   MOV BYTE PTR DS:[DE3385],1
+00DE165C   . B0 01                              MOV AL,1
+00DE165E   > 5E                                 POP ESI
+00DE165F   . 5D                                 POP EBP
+00DE1660   . C3                                 RETN
+00DE1661   > 6A 05                              PUSH 5
+00DE1663   . E8 2A020000                        CALL ReverseM.00DE1892
+00DE1668   . CC                                 INT3
+00DE1669   $ 6A 08                              PUSH 8
+00DE166B   . 68 D026DE00                        PUSH ReverseM.00DE26D0
+00DE1670   . E8 3B040000                        CALL ReverseM.00DE1AB0
+00DE1675   . 8365 FC 00                         AND DWORD PTR SS:[EBP-4],0
+00DE1679   . B8 4D5A0000                        MOV EAX,5A4D
+00DE167E   . 66:3905 0000DE00                   CMP WORD PTR DS:[DE0000],AX
+00DE1685   . 75 5D                              JNZ SHORT ReverseM.00DE16E4
+00DE1687   . A1 3C00DE00                        MOV EAX,DWORD PTR DS:[DE003C]
+00DE168C   . 81B8 0000DE00 50450000             CMP DWORD PTR DS:[EAX+DE0000],4550
+00DE1696   . 75 4C                              JNZ SHORT ReverseM.00DE16E4
+00DE1698   . B9 0B010000                        MOV ECX,10B
+00DE169D   . 66:3988 1800DE00                   CMP WORD PTR DS:[EAX+DE0018],CX
+00DE16A4   . 75 3E                              JNZ SHORT ReverseM.00DE16E4
+00DE16A6   . 8B45 08                            MOV EAX,DWORD PTR SS:[EBP+8]
+00DE16A9   . B9 0000DE00                        MOV ECX,ReverseM.00DE0000
+00DE16AE   . 2BC1                               SUB EAX,ECX
+00DE16B0   . 50                                 PUSH EAX
+00DE16B1   . 51                                 PUSH ECX
+00DE16B2   . E8 7EFEFFFF                        CALL ReverseM.00DE1535
+00DE16B7   . 59                                 POP ECX
+00DE16B8   . 59                                 POP ECX
+00DE16B9   . 85C0                               TEST EAX,EAX
+00DE16BB   . 74 27                              JE SHORT ReverseM.00DE16E4
+00DE16BD   . 8378 24 00                         CMP DWORD PTR DS:[EAX+24],0
+00DE16C1   . 7C 21                              JL SHORT ReverseM.00DE16E4
+00DE16C3   . C745 FC FEFFFFFF                   MOV DWORD PTR SS:[EBP-4],-2
+00DE16CA   . B0 01                              MOV AL,1
+00DE16CC   . EB 1F                              JMP SHORT ReverseM.00DE16ED
+00DE16CE   . 8B45 EC                            MOV EAX,DWORD PTR SS:[EBP-14]
+00DE16D1   . 8B00                               MOV EAX,DWORD PTR DS:[EAX]
+00DE16D3   . 33C9                               XOR ECX,ECX
+00DE16D5   . 8138 050000C0                      CMP DWORD PTR DS:[EAX],C0000005
+00DE16DB   . 0F94C1                             SETE CL
+00DE16DE   . 8BC1                               MOV EAX,ECX
+00DE16E0   . C3                                 RETN
+00DE16E1   . 8B65 E8                            MOV ESP,DWORD PTR SS:[EBP-18]
+00DE16E4   > C745 FC FEFFFFFF                   MOV DWORD PTR SS:[EBP-4],-2
+00DE16EB   . 32C0                               XOR AL,AL
+00DE16ED   > 8B4D F0                            MOV ECX,DWORD PTR SS:[EBP-10]
+00DE16F0   . 64:890D 00000000                   MOV DWORD PTR FS:[0],ECX
+00DE16F7   . 59                                 POP ECX
+00DE16F8   . 5F                                 POP EDI
+00DE16F9   . 5E                                 POP ESI
+00DE16FA   . 5B                                 POP EBX
+00DE16FB   . C9                                 LEAVE
+00DE16FC   . C3                                 RETN
+00DE16FD  /$ 55                                 PUSH EBP
+00DE16FE  |. 8BEC                               MOV EBP,ESP
+00DE1700  |. E8 4C070000                        CALL ReverseM.00DE1E51
+00DE1705  |. 85C0                               TEST EAX,EAX
+00DE1707  |. 74 0F                              JE SHORT ReverseM.00DE1718
+00DE1709  |. 807D 08 00                         CMP BYTE PTR SS:[EBP+8],0
+00DE170D  |. 75 09                              JNZ SHORT ReverseM.00DE1718
+00DE170F  |. 33C0                               XOR EAX,EAX
+00DE1711  |. B9 8033DE00                        MOV ECX,ReverseM.00DE3380
+00DE1716  |. 8701                               XCHG DWORD PTR DS:[ECX],EAX
+00DE1718  |> 5D                                 POP EBP
+00DE1719  \. C3                                 RETN
+00DE171A  /$ 55                                 PUSH EBP
+00DE171B  |. 8BEC                               MOV EBP,ESP
+00DE171D  |. 803D 8433DE00 00                   CMP BYTE PTR DS:[DE3384],0
+00DE1724  |. 74 06                              JE SHORT ReverseM.00DE172C
+00DE1726  |. 807D 0C 00                         CMP BYTE PTR SS:[EBP+C],0
+00DE172A  |. 75 12                              JNZ SHORT ReverseM.00DE173E
+00DE172C  |> FF75 08                            PUSH DWORD PTR SS:[EBP+8]
+00DE172F  |. E8 02010000                        CALL ReverseM.00DE1836
+00DE1734  |. FF75 08                            PUSH DWORD PTR SS:[EBP+8]
+00DE1737  |. E8 FA000000                        CALL ReverseM.00DE1836
+00DE173C  |. 59                                 POP ECX
+00DE173D  |. 59                                 POP ECX
+00DE173E  |> B0 01                              MOV AL,1
+00DE1740  |. 5D                                 POP EBP
+00DE1741  \. C3                                 RETN
+00DE1742  /$ 55                                 PUSH EBP
+00DE1743  |. 8BEC                               MOV EBP,ESP
+00DE1745  |. 833D 8833DE00 FF                   CMP DWORD PTR DS:[DE3388],-1
+00DE174C  |. FF75 08                            PUSH DWORD PTR SS:[EBP+8]
+00DE174F  |. 75 07                              JNZ SHORT ReverseM.00DE1758
+00DE1751  |. E8 9D070000                        CALL <JMP.&api-ms-win-crt-runtime-l1-1-0._crt_atexit>
+00DE1756  |. EB 0B                              JMP SHORT ReverseM.00DE1763
+00DE1758  |> 68 8833DE00                        PUSH ReverseM.00DE3388
+00DE175D  |. E8 8B070000                        CALL <JMP.&api-ms-win-crt-runtime-l1-1-0._register_onexi>
+00DE1762  |. 59                                 POP ECX
+00DE1763  |> 59                                 POP ECX
+00DE1764  |. 33C9                               XOR ECX,ECX
+00DE1766  |. 85C0                               TEST EAX,EAX
+00DE1768  |. 0F444D 08                          CMOVE ECX,DWORD PTR SS:[EBP+8]
+00DE176C  |. 8BC1                               MOV EAX,ECX
+00DE176E  |. 5D                                 POP EBP
+00DE176F  \. C3                                 RETN
+00DE1770  /$ 55                                 PUSH EBP
+00DE1771  |. 8BEC                               MOV EBP,ESP
+00DE1773  |. FF75 08                            PUSH DWORD PTR SS:[EBP+8]
+00DE1776  |. E8 C7FFFFFF                        CALL ReverseM.00DE1742
+00DE177B  |. F7D8                               NEG EAX
+00DE177D  |. 59                                 POP ECX
+00DE177E  |. 1BC0                               SBB EAX,EAX
+00DE1780  |. F7D8                               NEG EAX
+00DE1782  |. 48                                 DEC EAX
+00DE1783  |. 5D                                 POP EBP
+00DE1784  \. C3                                 RETN
+00DE1785  /$ 55                                 PUSH EBP
+00DE1786  |. 8BEC                               MOV EBP,ESP
+00DE1788  |. 83EC 14                            SUB ESP,14
+00DE178B  |. 8D45 F4                            LEA EAX,DWORD PTR SS:[EBP-C]
+00DE178E  |. 0F57C0                             XORPS XMM0,XMM0
+00DE1791  |. 50                                 PUSH EAX                                                 ; /pFileTime
+00DE1792  |. 66:0F1345 F4                       MOVLPS QWORD PTR SS:[EBP-C],XMM0                         ; |
+00DE1797  |. FF15 0020DE00                      CALL DWORD PTR DS:[<&KERNEL32.GetSystemTimeAsFileTime>]  ; \GetSystemTimeAsFileTime
+00DE179D  |. 8B45 F8                            MOV EAX,DWORD PTR SS:[EBP-8]
+00DE17A0  |. 3345 F4                            XOR EAX,DWORD PTR SS:[EBP-C]
+00DE17A3  |. 8945 FC                            MOV DWORD PTR SS:[EBP-4],EAX
+00DE17A6  |. FF15 2420DE00                      CALL DWORD PTR DS:[<&KERNEL32.GetCurrentThreadId>]       ; [GetCurrentThreadId
+00DE17AC  |. 3145 FC                            XOR DWORD PTR SS:[EBP-4],EAX
+00DE17AF  |. FF15 2820DE00                      CALL DWORD PTR DS:[<&KERNEL32.GetCurrentProcessId>]      ; [GetCurrentProcessId
+00DE17B5  |. 3145 FC                            XOR DWORD PTR SS:[EBP-4],EAX
+00DE17B8  |. 8D45 EC                            LEA EAX,DWORD PTR SS:[EBP-14]
+00DE17BB  |. 50                                 PUSH EAX                                                 ; /pPerformanceCount
+00DE17BC  |. FF15 2C20DE00                      CALL DWORD PTR DS:[<&KERNEL32.QueryPerformanceCounter>]  ; \QueryPerformanceCounter
+00DE17C2  |. 8B45 F0                            MOV EAX,DWORD PTR SS:[EBP-10]
+00DE17C5  |. 8D4D FC                            LEA ECX,DWORD PTR SS:[EBP-4]
+00DE17C8  |. 3345 EC                            XOR EAX,DWORD PTR SS:[EBP-14]
+00DE17CB  |. 3345 FC                            XOR EAX,DWORD PTR SS:[EBP-4]
+00DE17CE  |. 33C1                               XOR EAX,ECX
+00DE17D0  |. C9                                 LEAVE
+00DE17D1  \. C3                                 RETN
+00DE17D2  /$ 8B0D 0030DE00                      MOV ECX,DWORD PTR DS:[DE3000]
+00DE17D8  |. 56                                 PUSH ESI
+00DE17D9  |. 57                                 PUSH EDI
+00DE17DA  |. BF 4EE640BB                        MOV EDI,BB40E64E
+00DE17DF  |. BE 0000FFFF                        MOV ESI,FFFF0000
+00DE17E4  |. 3BCF                               CMP ECX,EDI
+00DE17E6  |. 74 04                              JE SHORT ReverseM.00DE17EC
+00DE17E8  |. 85CE                               TEST ESI,ECX
+00DE17EA  |. 75 26                              JNZ SHORT ReverseM.00DE1812
+00DE17EC  |> E8 94FFFFFF                        CALL ReverseM.00DE1785
+00DE17F1  |. 8BC8                               MOV ECX,EAX
+00DE17F3  |. 3BCF                               CMP ECX,EDI
+00DE17F5  |. 75 07                              JNZ SHORT ReverseM.00DE17FE
+00DE17F7  |. B9 4FE640BB                        MOV ECX,BB40E64F
+00DE17FC  |. EB 0E                              JMP SHORT ReverseM.00DE180C
+00DE17FE  |> 85CE                               TEST ESI,ECX
+00DE1800  |. 75 0A                              JNZ SHORT ReverseM.00DE180C
+00DE1802  |. 0D 11470000                        OR EAX,4711
+00DE1807  |. C1E0 10                            SHL EAX,10
+00DE180A  |. 0BC8                               OR ECX,EAX
+00DE180C  |> 890D 0030DE00                      MOV DWORD PTR DS:[DE3000],ECX
+00DE1812  |> F7D1                               NOT ECX
+00DE1814  |. 5F                                 POP EDI
+00DE1815  |. 890D 4030DE00                      MOV DWORD PTR DS:[DE3040],ECX
+00DE181B  |. 5E                                 POP ESI
+00DE181C  \. C3                                 RETN
+00DE181D  /$ 33C0                               XOR EAX,EAX
+00DE181F  \. C3                                 RETN
+00DE1820  /$ 33C0                               XOR EAX,EAX
+00DE1822  |. 40                                 INC EAX
+00DE1823  \. C3                                 RETN
+00DE1824  /$ B8 00400000                        MOV EAX,4000
+00DE1829  \. C3                                 RETN
+00DE182A  /$ 68 A033DE00                        PUSH ReverseM.00DE33A0
+00DE182F  |. FF15 1C20DE00                      CALL DWORD PTR DS:[<&KERNEL32.InitializeSListHead>]      ;  ntdll.RtlInitializeSListHead
+00DE1835  \. C3                                 RETN
+00DE1836  /$ B0 01                              MOV AL,1
+00DE1838  \. C3                                 RETN
+00DE1839  /$ 68 00000300                        PUSH 30000
+00DE183E  |. 68 00000100                        PUSH 10000
+00DE1843  |. 6A 00                              PUSH 0
+00DE1845  |. E8 AF060000                        CALL <JMP.&api-ms-win-crt-runtime-l1-1-0._controlfp_s>
+00DE184A  |. 83C4 0C                            ADD ESP,0C
+00DE184D  |. 85C0                               TEST EAX,EAX
+00DE184F  |. 75 01                              JNZ SHORT ReverseM.00DE1852
+00DE1851  |. C3                                 RETN
+00DE1852  |> 6A 07                              PUSH 7
+00DE1854  |. E8 39000000                        CALL ReverseM.00DE1892
+00DE1859  |. CC                                 INT3
+00DE185A  \$ C2 0000                            RETN 0
+00DE185D  /$ E8 9EF7FFFF                        CALL ReverseM.00DE1000
+00DE1862  |. 8B48 04                            MOV ECX,DWORD PTR DS:[EAX+4]
+00DE1865  |. 8308 24                            OR DWORD PTR DS:[EAX],24
+00DE1868  |. 8948 04                            MOV DWORD PTR DS:[EAX+4],ECX
+00DE186B  |. E8 A0F7FFFF                        CALL ReverseM.00DE1010
+00DE1870  |. 8B48 04                            MOV ECX,DWORD PTR DS:[EAX+4]
+00DE1873  |. 8308 02                            OR DWORD PTR DS:[EAX],2
+00DE1876  |. 8948 04                            MOV DWORD PTR DS:[EAX+4],ECX
+00DE1879  \. C3                                 RETN
+00DE187A  /$ 33C0                               XOR EAX,EAX
+00DE187C  |. 3905 4830DE00                      CMP DWORD PTR DS:[DE3048],EAX
+00DE1882  |. 0F94C0                             SETE AL
+00DE1885  \. C3                                 RETN
+00DE1886  /$ B8 BC33DE00                        MOV EAX,ReverseM.00DE33BC
+00DE188B  \. C3                                 RETN
+00DE188C  /$ B8 B833DE00                        MOV EAX,ReverseM.00DE33B8
+00DE1891  \. C3                                 RETN
+00DE1892  /$ 55                                 PUSH EBP
+00DE1893  |. 8BEC                               MOV EBP,ESP
+00DE1895  |. 81EC 24030000                      SUB ESP,324
+00DE189B  |. 56                                 PUSH ESI
+00DE189C  |. 6A 17                              PUSH 17
+00DE189E  |. FF15 1020DE00                      CALL DWORD PTR DS:[<&KERNEL32.IsProcessorFeaturePresent>>;  KERNEL32.IsProcessorFeaturePresent
+00DE18A4  |. 85C0                               TEST EAX,EAX
+00DE18A6  |. 74 05                              JE SHORT ReverseM.00DE18AD
+00DE18A8  |. 8B4D 08                            MOV ECX,DWORD PTR SS:[EBP+8]
+00DE18AB  |. CD 29                              INT 29
+00DE18AD  |> 6A 03                              PUSH 3
+00DE18AF  |. E8 9C010000                        CALL ReverseM.00DE1A50
+00DE18B4  |. C70424 CC020000                    MOV DWORD PTR SS:[ESP],2CC                               ; |
+00DE18BB  |. 8D85 DCFCFFFF                      LEA EAX,DWORD PTR SS:[EBP-324]                           ; |
+00DE18C1  |. 6A 00                              PUSH 0                                                   ; |c = 00
+00DE18C3  |. 50                                 PUSH EAX                                                 ; |s
+00DE18C4  |. E8 A0050000                        CALL <JMP.&VCRUNTIME140.memset>                          ; \memset
+00DE18C9  |. 83C4 0C                            ADD ESP,0C
+00DE18CC  |. 8985 8CFDFFFF                      MOV DWORD PTR SS:[EBP-274],EAX
+00DE18D2  |. 898D 88FDFFFF                      MOV DWORD PTR SS:[EBP-278],ECX
+00DE18D8  |. 8995 84FDFFFF                      MOV DWORD PTR SS:[EBP-27C],EDX
+00DE18DE  |. 899D 80FDFFFF                      MOV DWORD PTR SS:[EBP-280],EBX
+00DE18E4  |. 89B5 7CFDFFFF                      MOV DWORD PTR SS:[EBP-284],ESI
+00DE18EA  |. 89BD 78FDFFFF                      MOV DWORD PTR SS:[EBP-288],EDI
+00DE18F0  |. 66:8C95 A4FDFFFF                   MOV WORD PTR SS:[EBP-25C],SS
+00DE18F7  |. 66:8C8D 98FDFFFF                   MOV WORD PTR SS:[EBP-268],CS
+00DE18FE  |. 66:8C9D 74FDFFFF                   MOV WORD PTR SS:[EBP-28C],DS
+00DE1905  |. 66:8C85 70FDFFFF                   MOV WORD PTR SS:[EBP-290],ES
+00DE190C  |. 66:8CA5 6CFDFFFF                   MOV WORD PTR SS:[EBP-294],FS
+00DE1913  |. 66:8CAD 68FDFFFF                   MOV WORD PTR SS:[EBP-298],GS
+00DE191A  |. 9C                                 PUSHFD
+00DE191B  |. 8F85 9CFDFFFF                      POP DWORD PTR SS:[EBP-264]
+00DE1921  |. 8B45 04                            MOV EAX,DWORD PTR SS:[EBP+4]
+00DE1924  |. 8985 94FDFFFF                      MOV DWORD PTR SS:[EBP-26C],EAX
+00DE192A  |. 8D45 04                            LEA EAX,DWORD PTR SS:[EBP+4]
+00DE192D  |. 8985 A0FDFFFF                      MOV DWORD PTR SS:[EBP-260],EAX
+00DE1933  |. C785 DCFCFFFF 01000100             MOV DWORD PTR SS:[EBP-324],10001
+00DE193D  |. 8B40 FC                            MOV EAX,DWORD PTR DS:[EAX-4]
+00DE1940  |. 6A 50                              PUSH 50                                                  ; /n = 50 (80.)
+00DE1942  |. 8985 90FDFFFF                      MOV DWORD PTR SS:[EBP-270],EAX                           ; |
+00DE1948  |. 8D45 A8                            LEA EAX,DWORD PTR SS:[EBP-58]                            ; |
+00DE194B  |. 6A 00                              PUSH 0                                                   ; |c = 00
+00DE194D  |. 50                                 PUSH EAX                                                 ; |s
+00DE194E  |. E8 16050000                        CALL <JMP.&VCRUNTIME140.memset>                          ; \memset
+00DE1953  |. 8B45 04                            MOV EAX,DWORD PTR SS:[EBP+4]
+00DE1956  |. 83C4 0C                            ADD ESP,0C
+00DE1959  |. C745 A8 15000040                   MOV DWORD PTR SS:[EBP-58],40000015
+00DE1960  |. C745 AC 01000000                   MOV DWORD PTR SS:[EBP-54],1
+00DE1967  |. 8945 B4                            MOV DWORD PTR SS:[EBP-4C],EAX
+00DE196A  |. FF15 1820DE00                      CALL DWORD PTR DS:[<&KERNEL32.IsDebuggerPresent>]        ; [IsDebuggerPresent
+00DE1970  |. 8BF0                               MOV ESI,EAX
+00DE1972  |. 8D45 A8                            LEA EAX,DWORD PTR SS:[EBP-58]
+00DE1975  |. 8945 F8                            MOV DWORD PTR SS:[EBP-8],EAX
+00DE1978  |. 8D85 DCFCFFFF                      LEA EAX,DWORD PTR SS:[EBP-324]
+00DE197E  |. 6A 00                              PUSH 0                                                   ; /pTopLevelFilter = NULL
+00DE1980  |. 8945 FC                            MOV DWORD PTR SS:[EBP-4],EAX                             ; |
+00DE1983  |. FF15 0420DE00                      CALL DWORD PTR DS:[<&KERNEL32.SetUnhandledExceptionFilte>; \SetUnhandledExceptionFilter
+00DE1989  |. 8D45 F8                            LEA EAX,DWORD PTR SS:[EBP-8]
+00DE198C  |. 50                                 PUSH EAX                                                 ; /pExceptionInfo
+00DE198D  |. FF15 2020DE00                      CALL DWORD PTR DS:[<&KERNEL32.UnhandledExceptionFilter>] ; \UnhandledExceptionFilter
+00DE1993  |. 85C0                               TEST EAX,EAX
+00DE1995  |. 75 0D                              JNZ SHORT ReverseM.00DE19A4
+00DE1997  |. 83FE 01                            CMP ESI,1
+00DE199A  |. 74 08                              JE SHORT ReverseM.00DE19A4
+00DE199C  |. 6A 03                              PUSH 3
+00DE199E  |. E8 AD000000                        CALL ReverseM.00DE1A50
+00DE19A3  |. 59                                 POP ECX
+00DE19A4  |> 5E                                 POP ESI
+00DE19A5  |. C9                                 LEAVE
+00DE19A6  \. C3                                 RETN
+00DE19A7   $^E9 71FEFFFF                        JMP ReverseM.00DE181D
+00DE19AC  /$ 6A 00                              PUSH 0                                                   ; /pModule = NULL
+00DE19AE  |. FF15 1420DE00                      CALL DWORD PTR DS:[<&KERNEL32.GetModuleHandleW>]         ; \GetModuleHandleW
+00DE19B4  |. 85C0                               TEST EAX,EAX
+00DE19B6  |. 74 33                              JE SHORT ReverseM.00DE19EB
+00DE19B8  |. B9 4D5A0000                        MOV ECX,5A4D
+00DE19BD  |. 66:3908                            CMP WORD PTR DS:[EAX],CX
+00DE19C0  |. 75 29                              JNZ SHORT ReverseM.00DE19EB
+00DE19C2  |. 8B48 3C                            MOV ECX,DWORD PTR DS:[EAX+3C]
+00DE19C5  |. 03C8                               ADD ECX,EAX
+00DE19C7  |. 8139 50450000                      CMP DWORD PTR DS:[ECX],4550
+00DE19CD  |. 75 1C                              JNZ SHORT ReverseM.00DE19EB
+00DE19CF  |. B8 0B010000                        MOV EAX,10B
+00DE19D4  |. 66:3941 18                         CMP WORD PTR DS:[ECX+18],AX
+00DE19D8  |. 75 11                              JNZ SHORT ReverseM.00DE19EB
+00DE19DA  |. 8379 74 0E                         CMP DWORD PTR DS:[ECX+74],0E
+00DE19DE  |. 76 0B                              JBE SHORT ReverseM.00DE19EB
+00DE19E0  |. 83B9 E8000000 00                   CMP DWORD PTR DS:[ECX+E8],0
+00DE19E7  |. 0F95C0                             SETNE AL
+00DE19EA  |. C3                                 RETN
+00DE19EB  |> 32C0                               XOR AL,AL
+00DE19ED  \. C3                                 RETN
+00DE19EE  /$ 68 FA19DE00                        PUSH ReverseM.00DE19FA                                   ; /pTopLevelFilter = ReverseM.00DE19FA
+00DE19F3  |. FF15 0420DE00                      CALL DWORD PTR DS:[<&KERNEL32.SetUnhandledExceptionFilte>; \SetUnhandledExceptionFilter
+00DE19F9  \. C3                                 RETN
+00DE19FA   . 55                                 PUSH EBP
+00DE19FB   . 8BEC                               MOV EBP,ESP
+00DE19FD   . 56                                 PUSH ESI
+00DE19FE   . 57                                 PUSH EDI
+00DE19FF   . 8B7D 08                            MOV EDI,DWORD PTR SS:[EBP+8]
+00DE1A02   . 8B37                               MOV ESI,DWORD PTR DS:[EDI]
+00DE1A04   . 813E 63736DE0                      CMP DWORD PTR DS:[ESI],E06D7363
+00DE1A0A   . 75 25                              JNZ SHORT ReverseM.00DE1A31
+00DE1A0C   . 837E 10 03                         CMP DWORD PTR DS:[ESI+10],3
+00DE1A10   . 75 1F                              JNZ SHORT ReverseM.00DE1A31
+00DE1A12   . 8B46 14                            MOV EAX,DWORD PTR DS:[ESI+14]
+00DE1A15   . 3D 20059319                        CMP EAX,19930520
+00DE1A1A   . 74 1D                              JE SHORT ReverseM.00DE1A39
+00DE1A1C   . 3D 21059319                        CMP EAX,19930521
+00DE1A21   . 74 16                              JE SHORT ReverseM.00DE1A39
+00DE1A23   . 3D 22059319                        CMP EAX,19930522
+00DE1A28   . 74 0F                              JE SHORT ReverseM.00DE1A39
+00DE1A2A   . 3D 00409901                        CMP EAX,1994000
+00DE1A2F   . 74 08                              JE SHORT ReverseM.00DE1A39
+00DE1A31   > 5F                                 POP EDI
+00DE1A32   . 33C0                               XOR EAX,EAX
+00DE1A34   . 5E                                 POP ESI
+00DE1A35   . 5D                                 POP EBP
+00DE1A36   . C2 0400                            RETN 4
+00DE1A39   > E8 1F040000                        CALL <JMP.&VCRUNTIME140.__current_exception>
+00DE1A3E   . 8930                               MOV DWORD PTR DS:[EAX],ESI
+00DE1A40   . 8B77 04                            MOV ESI,DWORD PTR DS:[EDI+4]
+00DE1A43   . E8 1B040000                        CALL <JMP.&VCRUNTIME140.__current_exception_context>
+00DE1A48   . 8930                               MOV DWORD PTR DS:[EAX],ESI
+00DE1A4A   . E8 B0040000                        CALL <JMP.&api-ms-win-crt-runtime-l1-1-0.terminate>
+00DE1A4F   . CC                                 INT3
+00DE1A50  /$ 8325 A833DE00 00                   AND DWORD PTR DS:[DE33A8],0
+00DE1A57  \. C3                                 RETN
+00DE1A58  /$ 53                                 PUSH EBX
+00DE1A59  |. 56                                 PUSH ESI
+00DE1A5A  |. BE A026DE00                        MOV ESI,ReverseM.00DE26A0
+00DE1A5F  |. BB A026DE00                        MOV EBX,ReverseM.00DE26A0
+00DE1A64  |. 3BF3                               CMP ESI,EBX
+00DE1A66  |. 73 19                              JNB SHORT ReverseM.00DE1A81
+00DE1A68  |. 57                                 PUSH EDI
+00DE1A69  |> 8B3E                               /MOV EDI,DWORD PTR DS:[ESI]
+00DE1A6B  |. 85FF                               |TEST EDI,EDI
+00DE1A6D  |. 74 0A                              |JE SHORT ReverseM.00DE1A79
+00DE1A6F  |. 8BCF                               |MOV ECX,EDI
+00DE1A71  |. FF15 CC20DE00                      |CALL DWORD PTR DS:[DE20CC]                              ;  ReverseM.00DE185A
+00DE1A77  |. FFD7                               |CALL EDI
+00DE1A79  |> 83C6 04                            |ADD ESI,4
+00DE1A7C  |. 3BF3                               |CMP ESI,EBX
+00DE1A7E  |.^72 E9                              \JB SHORT ReverseM.00DE1A69
+00DE1A80  |. 5F                                 POP EDI
+00DE1A81  |> 5E                                 POP ESI
+00DE1A82  |. 5B                                 POP EBX
+00DE1A83  \. C3                                 RETN
+00DE1A84   . 53                                 PUSH EBX
+00DE1A85   . 56                                 PUSH ESI
+00DE1A86   . BE A826DE00                        MOV ESI,ReverseM.00DE26A8
+00DE1A8B   . BB A826DE00                        MOV EBX,ReverseM.00DE26A8
+00DE1A90   . 3BF3                               CMP ESI,EBX
+00DE1A92   . 73 19                              JNB SHORT ReverseM.00DE1AAD
+00DE1A94   . 57                                 PUSH EDI
+00DE1A95   > 8B3E                               MOV EDI,DWORD PTR DS:[ESI]
+00DE1A97   . 85FF                               TEST EDI,EDI
+00DE1A99   . 74 0A                              JE SHORT ReverseM.00DE1AA5
+00DE1A9B   . 8BCF                               MOV ECX,EDI
+00DE1A9D   . FF15 CC20DE00                      CALL DWORD PTR DS:[DE20CC]                               ;  ReverseM.00DE185A
+00DE1AA3   . FFD7                               CALL EDI
+00DE1AA5   > 83C6 04                            ADD ESI,4
+00DE1AA8   . 3BF3                               CMP ESI,EBX
+00DE1AAA   .^72 E9                              JB SHORT ReverseM.00DE1A95
+00DE1AAC   . 5F                                 POP EDI
+00DE1AAD   > 5E                                 POP ESI
+00DE1AAE   . 5B                                 POP EBX
+00DE1AAF   . C3                                 RETN
+00DE1AB0  /$ 68 F51ADE00                        PUSH ReverseM.00DE1AF5
+00DE1AB5  |. 64:FF35 00000000                   PUSH DWORD PTR FS:[0]
+00DE1ABC  |. 8B4424 10                          MOV EAX,DWORD PTR SS:[ESP+10]
+00DE1AC0  |. 896C24 10                          MOV DWORD PTR SS:[ESP+10],EBP
+00DE1AC4  |. 8D6C24 10                          LEA EBP,DWORD PTR SS:[ESP+10]
+00DE1AC8  |. 2BE0                               SUB ESP,EAX
+00DE1ACA  |. 53                                 PUSH EBX
+00DE1ACB  |. 56                                 PUSH ESI
+00DE1ACC  |. 57                                 PUSH EDI
+00DE1ACD  |. A1 0030DE00                        MOV EAX,DWORD PTR DS:[DE3000]
+00DE1AD2  |. 3145 FC                            XOR DWORD PTR SS:[EBP-4],EAX
+00DE1AD5  |. 33C5                               XOR EAX,EBP
+00DE1AD7  |. 50                                 PUSH EAX
+00DE1AD8  |. 8965 E8                            MOV DWORD PTR SS:[EBP-18],ESP
+00DE1ADB  |. FF75 F8                            PUSH DWORD PTR SS:[EBP-8]
+00DE1ADE  |. 8B45 FC                            MOV EAX,DWORD PTR SS:[EBP-4]
+00DE1AE1  |. C745 FC FEFFFFFF                   MOV DWORD PTR SS:[EBP-4],-2
+00DE1AE8  |. 8945 F8                            MOV DWORD PTR SS:[EBP-8],EAX
+00DE1AEB  |. 8D45 F0                            LEA EAX,DWORD PTR SS:[EBP-10]
+00DE1AEE  |. 64:A3 00000000                     MOV DWORD PTR FS:[0],EAX
+00DE1AF4  \. C3                                 RETN
+00DE1AF5  /. 55                                 PUSH EBP
+00DE1AF6  |. 8BEC                               MOV EBP,ESP
+00DE1AF8  |. 56                                 PUSH ESI
+00DE1AF9  |. 8B75 08                            MOV ESI,DWORD PTR SS:[EBP+8]
+00DE1AFC  |. FF36                               PUSH DWORD PTR DS:[ESI]
+00DE1AFE  |. E8 02040000                        CALL ReverseM.00DE1F05
+00DE1B03  |. FF75 14                            PUSH DWORD PTR SS:[EBP+14]
+00DE1B06  |. 8906                               MOV DWORD PTR DS:[ESI],EAX
+00DE1B08  |. FF75 10                            PUSH DWORD PTR SS:[EBP+10]
+00DE1B0B  |. FF75 0C                            PUSH DWORD PTR SS:[EBP+C]
+00DE1B0E  |. 56                                 PUSH ESI
+00DE1B0F  |. 68 B311DE00                        PUSH ReverseM.00DE11B3                                   ;  Entry address
+00DE1B14  |. 68 0030DE00                        PUSH ReverseM.00DE3000
+00DE1B19  |. E8 51030000                        CALL <JMP.&VCRUNTIME140._except_handler4_common>
+00DE1B1E  |. 83C4 1C                            ADD ESP,1C
+00DE1B21  |. 5E                                 POP ESI
+00DE1B22  |. 5D                                 POP EBP
+00DE1B23  \. C3                                 RETN
+00DE1B24   $ 55                                 PUSH EBP
+00DE1B25   . 8BEC                               MOV EBP,ESP
+00DE1B27   . 8325 B033DE00 00                   AND DWORD PTR DS:[DE33B0],0
+00DE1B2E   . 83EC 28                            SUB ESP,28
+00DE1B31   . 830D 5830DE00 01                   OR DWORD PTR DS:[DE3058],1
+00DE1B38   . 6A 0A                              PUSH 0A
+00DE1B3A   . FF15 1020DE00                      CALL DWORD PTR DS:[<&KERNEL32.IsProcessorFeaturePresent>>;  KERNEL32.IsProcessorFeaturePresent
+00DE1B40   . 85C0                               TEST EAX,EAX
+00DE1B42   . 0F84 05030000                      JE ReverseM.00DE1E4D
+00DE1B48   . 53                                 PUSH EBX
+00DE1B49   . 56                                 PUSH ESI
+00DE1B4A   . 57                                 PUSH EDI
+00DE1B4B   . 33C0                               XOR EAX,EAX
+00DE1B4D   . 8D7D D8                            LEA EDI,DWORD PTR SS:[EBP-28]
+00DE1B50   . 33C9                               XOR ECX,ECX
+00DE1B52   . 53                                 PUSH EBX
+00DE1B53   . 0FA2                               CPUID
+00DE1B55   . 8BF3                               MOV ESI,EBX
+00DE1B57   . 5B                                 POP EBX
+00DE1B58   . 90                                 NOP
+00DE1B59   . 8907                               MOV DWORD PTR DS:[EDI],EAX
+00DE1B5B   . 8977 04                            MOV DWORD PTR DS:[EDI+4],ESI
+00DE1B5E   . 894F 08                            MOV DWORD PTR DS:[EDI+8],ECX
+00DE1B61   . 33C9                               XOR ECX,ECX
+00DE1B63   . 8957 0C                            MOV DWORD PTR DS:[EDI+C],EDX
+00DE1B66   . 8B45 D8                            MOV EAX,DWORD PTR SS:[EBP-28]
+00DE1B69   . 8B7D DC                            MOV EDI,DWORD PTR SS:[EBP-24]
+00DE1B6C   . 8945 FC                            MOV DWORD PTR SS:[EBP-4],EAX
+00DE1B6F   . 81F7 47656E75                      XOR EDI,756E6547
+00DE1B75   . 8B45 E4                            MOV EAX,DWORD PTR SS:[EBP-1C]
+00DE1B78   . 35 696E6549                        XOR EAX,49656E69
+00DE1B7D   . 8945 E8                            MOV DWORD PTR SS:[EBP-18],EAX
+00DE1B80   . 8B45 E0                            MOV EAX,DWORD PTR SS:[EBP-20]
+00DE1B83   . 35 6E74656C                        XOR EAX,6C65746E
+00DE1B88   . 8945 EC                            MOV DWORD PTR SS:[EBP-14],EAX
+00DE1B8B   . 33C0                               XOR EAX,EAX
+00DE1B8D   . 40                                 INC EAX
+00DE1B8E   . 53                                 PUSH EBX
+00DE1B8F   . 0FA2                               CPUID
+00DE1B91   . 8BF3                               MOV ESI,EBX
+00DE1B93   . 5B                                 POP EBX
+00DE1B94   . 90                                 NOP
+00DE1B95   . 8D5D D8                            LEA EBX,DWORD PTR SS:[EBP-28]
+00DE1B98   . 8903                               MOV DWORD PTR DS:[EBX],EAX
+00DE1B9A   . 8B45 E8                            MOV EAX,DWORD PTR SS:[EBP-18]
+00DE1B9D   . 0B45 EC                            OR EAX,DWORD PTR SS:[EBP-14]
+00DE1BA0   . 0BC7                               OR EAX,EDI
+00DE1BA2   . 8973 04                            MOV DWORD PTR DS:[EBX+4],ESI
+00DE1BA5   . 894B 08                            MOV DWORD PTR DS:[EBX+8],ECX
+00DE1BA8   . 8953 0C                            MOV DWORD PTR DS:[EBX+C],EDX
+00DE1BAB   . 75 39                              JNZ SHORT ReverseM.00DE1BE6
+00DE1BAD   . 8B45 D8                            MOV EAX,DWORD PTR SS:[EBP-28]
+00DE1BB0   . 25 F03FFF0F                        AND EAX,0FFF3FF0
+00DE1BB5   . 3D C0060100                        CMP EAX,106C0
+00DE1BBA   . 74 23                              JE SHORT ReverseM.00DE1BDF
+00DE1BBC   . 3D 60060200                        CMP EAX,20660
+00DE1BC1   . 74 1C                              JE SHORT ReverseM.00DE1BDF
+00DE1BC3   . 3D 70060200                        CMP EAX,20670
+00DE1BC8   . 74 15                              JE SHORT ReverseM.00DE1BDF
+00DE1BCA   . 3D 50060300                        CMP EAX,30650
+00DE1BCF   . 74 0E                              JE SHORT ReverseM.00DE1BDF
+00DE1BD1   . 3D 60060300                        CMP EAX,30660
+00DE1BD6   . 74 07                              JE SHORT ReverseM.00DE1BDF
+00DE1BD8   . 3D 70060300                        CMP EAX,30670
+00DE1BDD   . 75 07                              JNZ SHORT ReverseM.00DE1BE6
+00DE1BDF   > 830D B433DE00 01                   OR DWORD PTR DS:[DE33B4],1
+00DE1BE6   > 8B55 E0                            MOV EDX,DWORD PTR SS:[EBP-20]
+00DE1BE9   . 33DB                               XOR EBX,EBX
+00DE1BEB   . 215D EC                            AND DWORD PTR SS:[EBP-14],EBX
+00DE1BEE   . 33FF                               XOR EDI,EDI
+00DE1BF0   . 215D E8                            AND DWORD PTR SS:[EBP-18],EBX
+00DE1BF3   . 837D FC 07                         CMP DWORD PTR SS:[EBP-4],7
+00DE1BF7   . 8955 F4                            MOV DWORD PTR SS:[EBP-C],EDX
+00DE1BFA   . 0F8C 87000000                      JL ReverseM.00DE1C87
+00DE1C00   . 6A 07                              PUSH 7
+00DE1C02   . 58                                 POP EAX
+00DE1C03   . 33C9                               XOR ECX,ECX
+00DE1C05   . 53                                 PUSH EBX
+00DE1C06   . 0FA2                               CPUID
+00DE1C08   . 8BF3                               MOV ESI,EBX
+00DE1C0A   . 5B                                 POP EBX
+00DE1C0B   . 90                                 NOP
+00DE1C0C   . 8D5D D8                            LEA EBX,DWORD PTR SS:[EBP-28]
+00DE1C0F   . 8903                               MOV DWORD PTR DS:[EBX],EAX
+00DE1C11   . 8973 04                            MOV DWORD PTR DS:[EBX+4],ESI
+00DE1C14   . 894B 08                            MOV DWORD PTR DS:[EBX+8],ECX
+00DE1C17   . 8953 0C                            MOV DWORD PTR DS:[EBX+C],EDX
+00DE1C1A   . 8B5D DC                            MOV EBX,DWORD PTR SS:[EBP-24]
+00DE1C1D   . 8B45 E4                            MOV EAX,DWORD PTR SS:[EBP-1C]
+00DE1C20   . 895D F8                            MOV DWORD PTR SS:[EBP-8],EBX
+00DE1C23   . 8945 EC                            MOV DWORD PTR SS:[EBP-14],EAX
+00DE1C26   . F7C3 00020000                      TEST EBX,200
+00DE1C2C   . 74 07                              JE SHORT ReverseM.00DE1C35
+00DE1C2E   . 830D B433DE00 02                   OR DWORD PTR DS:[DE33B4],2
+00DE1C35   > 837D D8 01                         CMP DWORD PTR SS:[EBP-28],1
+00DE1C39   . 7C 24                              JL SHORT ReverseM.00DE1C5F
+00DE1C3B   . 6A 07                              PUSH 7
+00DE1C3D   . 58                                 POP EAX
+00DE1C3E   . 33C9                               XOR ECX,ECX
+00DE1C40   . 41                                 INC ECX
+00DE1C41   . 53                                 PUSH EBX
+00DE1C42   . 0FA2                               CPUID
+00DE1C44   . 8BF3                               MOV ESI,EBX
+00DE1C46   . 5B                                 POP EBX
+00DE1C47   . 90                                 NOP
+00DE1C48   . 8D5D D8                            LEA EBX,DWORD PTR SS:[EBP-28]
+00DE1C4B   . 8903                               MOV DWORD PTR DS:[EBX],EAX
+00DE1C4D   . 8973 04                            MOV DWORD PTR DS:[EBX+4],ESI
+00DE1C50   . 894B 08                            MOV DWORD PTR DS:[EBX+8],ECX
+00DE1C53   . 8953 0C                            MOV DWORD PTR DS:[EBX+C],EDX
+00DE1C56   . 8B45 E4                            MOV EAX,DWORD PTR SS:[EBP-1C]
+00DE1C59   . 8B5D F8                            MOV EBX,DWORD PTR SS:[EBP-8]
+00DE1C5C   . 8945 E8                            MOV DWORD PTR SS:[EBP-18],EAX
+00DE1C5F   > 6A 24                              PUSH 24
+00DE1C61   . 58                                 POP EAX
+00DE1C62   . 3945 FC                            CMP DWORD PTR SS:[EBP-4],EAX
+00DE1C65   . 7C 1D                              JL SHORT ReverseM.00DE1C84
+00DE1C67   . 33C9                               XOR ECX,ECX
+00DE1C69   . 8D7D D8                            LEA EDI,DWORD PTR SS:[EBP-28]
+00DE1C6C   . 53                                 PUSH EBX
+00DE1C6D   . 0FA2                               CPUID
+00DE1C6F   . 8BF3                               MOV ESI,EBX
+00DE1C71   . 5B                                 POP EBX
+00DE1C72   . 90                                 NOP
+00DE1C73   . 8B5D F8                            MOV EBX,DWORD PTR SS:[EBP-8]
+00DE1C76   . 8907                               MOV DWORD PTR DS:[EDI],EAX
+00DE1C78   . 8977 04                            MOV DWORD PTR DS:[EDI+4],ESI
+00DE1C7B   . 894F 08                            MOV DWORD PTR DS:[EDI+8],ECX
+00DE1C7E   . 8957 0C                            MOV DWORD PTR DS:[EDI+C],EDX
+00DE1C81   . 8B7D DC                            MOV EDI,DWORD PTR SS:[EBP-24]
+00DE1C84   > 8B55 F4                            MOV EDX,DWORD PTR SS:[EBP-C]
+00DE1C87   > A1 5830DE00                        MOV EAX,DWORD PTR DS:[DE3058]
+00DE1C8C   . 8B0D 5030DE00                      MOV ECX,DWORD PTR DS:[DE3050]
+00DE1C92   . 83C8 02                            OR EAX,2
+00DE1C95   . 8B35 5430DE00                      MOV ESI,DWORD PTR DS:[DE3054]
+00DE1C9B   . 83E1 FE                            AND ECX,FFFFFFFE
+00DE1C9E   . C705 B033DE00 01000000             MOV DWORD PTR DS:[DE33B0],1
+00DE1CA8   . A3 5830DE00                        MOV DWORD PTR DS:[DE3058],EAX
+00DE1CAD   . 890D 5030DE00                      MOV DWORD PTR DS:[DE3050],ECX
+00DE1CB3   . 8935 5430DE00                      MOV DWORD PTR DS:[DE3054],ESI
+00DE1CB9   . F7C2 00001000                      TEST EDX,100000
+00DE1CBF   . 0F84 85010000                      JE ReverseM.00DE1E4A
+00DE1CC5   . 83C8 04                            OR EAX,4
+00DE1CC8   . C705 B033DE00 02000000             MOV DWORD PTR DS:[DE33B0],2
+00DE1CD2   . 83E1 EF                            AND ECX,FFFFFFEF
+00DE1CD5   . A3 5830DE00                        MOV DWORD PTR DS:[DE3058],EAX
+00DE1CDA   . 890D 5030DE00                      MOV DWORD PTR DS:[DE3050],ECX
+00DE1CE0   . 8935 5430DE00                      MOV DWORD PTR DS:[DE3054],ESI
+00DE1CE6   . F7C2 00000008                      TEST EDX,8000000
+00DE1CEC   . 0F84 58010000                      JE ReverseM.00DE1E4A
+00DE1CF2   . F7C2 00000010                      TEST EDX,10000000
+00DE1CF8   . 0F84 4C010000                      JE ReverseM.00DE1E4A
+00DE1CFE   . 33C9                               XOR ECX,ECX
+00DE1D00     0F                                 DB 0F
+00DE1D01   . 01D0                               ADD EAX,EDX
+00DE1D03   . 8945 F0                            MOV DWORD PTR SS:[EBP-10],EAX
+00DE1D06   . 33F6                               XOR ESI,ESI
+00DE1D08   . 8955 F4                            MOV DWORD PTR SS:[EBP-C],EDX
+00DE1D0B   . 8B45 F0                            MOV EAX,DWORD PTR SS:[EBP-10]
+00DE1D0E   . 8B4D F4                            MOV ECX,DWORD PTR SS:[EBP-C]
+00DE1D11   . 83E0 06                            AND EAX,6
+00DE1D14   . 23CE                               AND ECX,ESI
+00DE1D16   . 83F8 06                            CMP EAX,6
+00DE1D19   . 0F85 2B010000                      JNZ ReverseM.00DE1E4A
+00DE1D1F   . 3BCE                               CMP ECX,ESI
+00DE1D21   . 0F85 23010000                      JNZ ReverseM.00DE1E4A
+00DE1D27   . A1 5830DE00                        MOV EAX,DWORD PTR DS:[DE3058]
+00DE1D2C   . 83C8 08                            OR EAX,8
+00DE1D2F   . C705 B033DE00 03000000             MOV DWORD PTR DS:[DE33B0],3
+00DE1D39   . A3 5830DE00                        MOV DWORD PTR DS:[DE3058],EAX
+00DE1D3E   . F6C3 20                            TEST BL,20
+00DE1D41   . 74 79                              JE SHORT ReverseM.00DE1DBC
+00DE1D43   . 8B0D 5430DE00                      MOV ECX,DWORD PTR DS:[DE3054]
+00DE1D49   . 83C8 20                            OR EAX,20
+00DE1D4C   . A3 5830DE00                        MOV DWORD PTR DS:[DE3058],EAX
+00DE1D51   . BA 000003D0                        MOV EDX,D0030000
+00DE1D56   . A1 5030DE00                        MOV EAX,DWORD PTR DS:[DE3050]
+00DE1D5B   . 23DA                               AND EBX,EDX
+00DE1D5D   . 83E0 FD                            AND EAX,FFFFFFFD
+00DE1D60   . C705 B033DE00 05000000             MOV DWORD PTR DS:[DE33B0],5
+00DE1D6A   . A3 5030DE00                        MOV DWORD PTR DS:[DE3050],EAX
+00DE1D6F   . 890D 5430DE00                      MOV DWORD PTR DS:[DE3054],ECX
+00DE1D75   . 3BDA                               CMP EBX,EDX
+00DE1D77   . 75 4E                              JNZ SHORT ReverseM.00DE1DC7
+00DE1D79   . 8B45 F0                            MOV EAX,DWORD PTR SS:[EBP-10]
+00DE1D7C   . BA E0000000                        MOV EDX,0E0
+00DE1D81   . 8B4D F4                            MOV ECX,DWORD PTR SS:[EBP-C]
+00DE1D84   . 23C2                               AND EAX,EDX
+00DE1D86   . 23CE                               AND ECX,ESI
+00DE1D88   . 3BC2                               CMP EAX,EDX
+00DE1D8A   . 75 30                              JNZ SHORT ReverseM.00DE1DBC
+00DE1D8C   . 3BCE                               CMP ECX,ESI
+00DE1D8E   . 75 2C                              JNZ SHORT ReverseM.00DE1DBC
+00DE1D90   . A1 5030DE00                        MOV EAX,DWORD PTR DS:[DE3050]
+00DE1D95   . 830D 5830DE00 40                   OR DWORD PTR DS:[DE3058],40
+00DE1D9C   . 83E0 DB                            AND EAX,FFFFFFDB
+00DE1D9F   . 8B0D 5430DE00                      MOV ECX,DWORD PTR DS:[DE3054]
+00DE1DA5   . C705 B033DE00 06000000             MOV DWORD PTR DS:[DE33B0],6
+00DE1DAF   . A3 5030DE00                        MOV DWORD PTR DS:[DE3050],EAX
+00DE1DB4   . 890D 5430DE00                      MOV DWORD PTR DS:[DE3054],ECX
+00DE1DBA   . EB 0B                              JMP SHORT ReverseM.00DE1DC7
+00DE1DBC   > 8B0D 5430DE00                      MOV ECX,DWORD PTR DS:[DE3054]
+00DE1DC2   . A1 5030DE00                        MOV EAX,DWORD PTR DS:[DE3050]
+00DE1DC7   > F745 EC 00008000                   TEST DWORD PTR SS:[EBP-14],800000
+00DE1DCE   . 74 10                              JE SHORT ReverseM.00DE1DE0
+00DE1DD0   . 25 FFFFFFFE                        AND EAX,FEFFFFFF
+00DE1DD5   . 890D 5430DE00                      MOV DWORD PTR DS:[DE3054],ECX
+00DE1DDB   . A3 5030DE00                        MOV DWORD PTR DS:[DE3050],EAX
+00DE1DE0   > F745 E8 00000800                   TEST DWORD PTR SS:[EBP-18],80000
+00DE1DE7   . 74 61                              JE SHORT ReverseM.00DE1E4A
+00DE1DE9   . 8B45 F0                            MOV EAX,DWORD PTR SS:[EBP-10]
+00DE1DEC   . BA E0000000                        MOV EDX,0E0
+00DE1DF1   . 8B4D F4                            MOV ECX,DWORD PTR SS:[EBP-C]
+00DE1DF4   . 23C2                               AND EAX,EDX
+00DE1DF6   . 23CE                               AND ECX,ESI
+00DE1DF8   . 3BC2                               CMP EAX,EDX
+00DE1DFA   . 75 4E                              JNZ SHORT ReverseM.00DE1E4A
+00DE1DFC   . 3BCE                               CMP ECX,ESI
+00DE1DFE   . 75 4A                              JNZ SHORT ReverseM.00DE1E4A
+00DE1E00   . 8BC7                               MOV EAX,EDI
+00DE1E02   . 33C9                               XOR ECX,ECX
+00DE1E04   . C1EF 10                            SHR EDI,10
+00DE1E07   . 25 FF000400                        AND EAX,400FF
+00DE1E0C   . 83E7 07                            AND EDI,7
+00DE1E0F   . A3 AC33DE00                        MOV DWORD PTR DS:[DE33AC],EAX
+00DE1E14   . 81CF 28000001                      OR EDI,1000028
+00DE1E1A   . F7D1                               NOT ECX
+00DE1E1C   . 230D 5430DE00                      AND ECX,DWORD PTR DS:[DE3054]
+00DE1E22   . F7D7                               NOT EDI
+00DE1E24   . 233D 5030DE00                      AND EDI,DWORD PTR DS:[DE3050]
+00DE1E2A   . 893D 5030DE00                      MOV DWORD PTR DS:[DE3050],EDI
+00DE1E30   . 890D 5430DE00                      MOV DWORD PTR DS:[DE3054],ECX
+00DE1E36   . 83F8 01                            CMP EAX,1
+00DE1E39   . 76 0F                              JBE SHORT ReverseM.00DE1E4A
+00DE1E3B   . 83E7 BF                            AND EDI,FFFFFFBF
+00DE1E3E   . 890D 5430DE00                      MOV DWORD PTR DS:[DE3054],ECX
+00DE1E44   . 893D 5030DE00                      MOV DWORD PTR DS:[DE3050],EDI
+00DE1E4A   > 5F                                 POP EDI
+00DE1E4B   . 5E                                 POP ESI
+00DE1E4C   . 5B                                 POP EBX
+00DE1E4D   > 33C0                               XOR EAX,EAX
+00DE1E4F   . C9                                 LEAVE
+00DE1E50   . C3                                 RETN
+00DE1E51  /$ 33C0                               XOR EAX,EAX
+00DE1E53  |. 3905 5C30DE00                      CMP DWORD PTR DS:[DE305C],EAX
+00DE1E59  |. 0F95C0                             SETNE AL
+00DE1E5C  \. C3                                 RETN
+00DE1E5D   $-FF25 3820DE00                      JMP DWORD PTR DS:[<&VCRUNTIME140.__current_exception>]   ;  VCRUNTIM.__current_exception
+00DE1E63   $-FF25 3420DE00                      JMP DWORD PTR DS:[<&VCRUNTIME140.__current_exception_con>;  VCRUNTIM.__current_exception_context
+00DE1E69   $-FF25 3C20DE00                      JMP DWORD PTR DS:[<&VCRUNTIME140.memset>]                ;  VCRUNTIM.memset
+00DE1E6F   $-FF25 4020DE00                      JMP DWORD PTR DS:[<&VCRUNTIME140._except_handler4_common>;  VCRUNTIM._except_handler4_common
+00DE1E75   $-FF25 8420DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._seh_f>;  ucrtbase._seh_filter_exe
+00DE1E7B   $-FF25 AC20DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._set_a>;  ucrtbase._set_app_type
+00DE1E81   $-FF25 5820DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-math-l1-1-0.__setuser>;  ucrtbase.__setusermatherr
+00DE1E87   $-FF25 A420DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._confi>;  ucrtbase._configure_narrow_argv
+00DE1E8D   $-FF25 A020DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._initi>;  ucrtbase._initialize_narrow_environment
+00DE1E93   $-FF25 9C20DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._get_i>;  ucrtbase._get_initial_narrow_environment
+00DE1E99   $-FF25 9820DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._initt>;  ucrtbase._initterm
+00DE1E9F   $-FF25 9420DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._initt>;  ucrtbase._initterm_e
+00DE1EA5   $-FF25 6820DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0.exit>] ;  ucrtbase.exit
+00DE1EAB   $-FF25 8020DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._exit>>;  ucrtbase._exit
+00DE1EB1   $-FF25 B420DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-stdio-l1-1-0._set_fmo>;  ucrtbase._set_fmode
+00DE1EB7   $-FF25 8C20DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0.__p___>;  ucrtbase.__p___argc
+00DE1EBD   $-FF25 7420DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0.__p___>;  ucrtbase.__p___argv
+00DE1EC3   $-FF25 6420DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._cexit>;  ucrtbase._cexit
+00DE1EC9   $-FF25 6020DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._c_exi>;  ucrtbase._c_exit
+00DE1ECF   $-FF25 8820DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._regis>;  ucrtbase._register_thread_local_exe_atexit_callback
+00DE1ED5   $-FF25 5020DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-locale-l1-1-0._config>;  ucrtbase._configthreadlocale
+00DE1EDB   $-FF25 4820DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-heap-l1-1-0._set_new_>;  ucrtbase._set_new_mode
+00DE1EE1   $-FF25 C020DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-stdio-l1-1-0.__p__com>;  ucrtbase.__p__commode
+00DE1EE7   $-FF25 6C20DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._initi>;  ucrtbase._initialize_onexit_table
+00DE1EED   $-FF25 7020DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._regis>;  ucrtbase._register_onexit_function
+00DE1EF3   $-FF25 A820DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._crt_a>;  ucrtbase._crt_atexit
+00DE1EF9   $-FF25 7820DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0._contr>;  ucrtbase._controlfp_s
+00DE1EFF   $-FF25 7C20DE00                      JMP DWORD PTR DS:[<&api-ms-win-crt-runtime-l1-1-0.termin>;  ucrtbase.terminate
+00DE1F05  /$ 55                                 PUSH EBP
+00DE1F06  |. 8BEC                               MOV EBP,ESP
+00DE1F08  |. 51                                 PUSH ECX
+00DE1F09  |. 833D B033DE00 01                   CMP DWORD PTR DS:[DE33B0],1
+00DE1F10  |. 8B4D 08                            MOV ECX,DWORD PTR SS:[EBP+8]
+00DE1F13  |. 7C 5C                              JL SHORT ReverseM.00DE1F71
+00DE1F15  |. 81F9 B40200C0                      CMP ECX,C00002B4
+00DE1F1B  |. 74 08                              JE SHORT ReverseM.00DE1F25
+00DE1F1D  |. 81F9 B50200C0                      CMP ECX,C00002B5
+00DE1F23  |. 75 4C                              JNZ SHORT ReverseM.00DE1F71
+00DE1F25  |> 0FAE5D FC                          STMXCSR DWORD PTR SS:[EBP-4]
+00DE1F29  |. 8B45 FC                            MOV EAX,DWORD PTR SS:[EBP-4]
+00DE1F2C  |. 83F0 3F                            XOR EAX,3F
+00DE1F2F  |. A8 81                              TEST AL,81
+00DE1F31  |. 74 42                              JE SHORT ReverseM.00DE1F75
+00DE1F33  |. A9 04020000                        TEST EAX,204
+00DE1F38  |. 75 07                              JNZ SHORT ReverseM.00DE1F41
+00DE1F3A  |. B8 8E0000C0                        MOV EAX,C000008E
+00DE1F3F  |. C9                                 LEAVE
+00DE1F40  |. C3                                 RETN
+00DE1F41  |> A9 02010000                        TEST EAX,102
+00DE1F46  |. 74 2D                              JE SHORT ReverseM.00DE1F75
+00DE1F48  |. A9 08040000                        TEST EAX,408
+00DE1F4D  |. 75 07                              JNZ SHORT ReverseM.00DE1F56
+00DE1F4F  |. B8 910000C0                        MOV EAX,C0000091
+00DE1F54  |. C9                                 LEAVE
+00DE1F55  |. C3                                 RETN
+00DE1F56  |> A9 10080000                        TEST EAX,810
+00DE1F5B  |. 75 07                              JNZ SHORT ReverseM.00DE1F64
+00DE1F5D  |. B8 930000C0                        MOV EAX,C0000093
+00DE1F62  |. C9                                 LEAVE
+00DE1F63  |. C3                                 RETN
+00DE1F64  |> A9 20100000                        TEST EAX,1020
+00DE1F69  |. B8 8F0000C0                        MOV EAX,C000008F
+00DE1F6E  |. 0F44C8                             CMOVE ECX,EAX
+00DE1F71  |> 8BC1                               MOV EAX,ECX
+00DE1F73  |. C9                                 LEAVE
+00DE1F74  |. C3                                 RETN
+00DE1F75  |> B8 900000C0                        MOV EAX,C0000090
+00DE1F7A  |. C9                                 LEAVE
+00DE1F7B  \. C3                                 RETN
+00DE1F7C     00                                 DB 00
+00DE1F7D     00                                 DB 00
+00DE1F7E     00                                 DB 00
+00DE1F7F     00                                 DB 00
+00DE1F80     00                                 DB 00
+00DE1F81     00                                 DB 00
+00DE1F82     00                                 DB 00
+00DE1F83     00                                 DB 00
+00DE1F84     00                                 DB 00
+00DE1F85     00                                 DB 00
+00DE1F86     00                                 DB 00
+00DE1F87     00                                 DB 00
+00DE1F88     00                                 DB 00
+00DE1F89     00                                 DB 00
+00DE1F8A     00                                 DB 00
+00DE1F8B     00                                 DB 00
+00DE1F8C     00                                 DB 00
+00DE1F8D     00                                 DB 00
+00DE1F8E     00                                 DB 00
+00DE1F8F     00                                 DB 00
+00DE1F90     00                                 DB 00
+00DE1F91     00                                 DB 00
+00DE1F92     00                                 DB 00
+00DE1F93     00                                 DB 00
+00DE1F94     00                                 DB 00
+00DE1F95     00                                 DB 00
+00DE1F96     00                                 DB 00
+00DE1F97     00                                 DB 00
+00DE1F98     00                                 DB 00
+00DE1F99     00                                 DB 00
+00DE1F9A     00                                 DB 00
+00DE1F9B     00                                 DB 00
+00DE1F9C     00                                 DB 00
+00DE1F9D     00                                 DB 00
+00DE1F9E     00                                 DB 00
+00DE1F9F     00                                 DB 00
+00DE1FA0     00                                 DB 00
+00DE1FA1     00                                 DB 00
+00DE1FA2     00                                 DB 00
+00DE1FA3     00                                 DB 00
+00DE1FA4     00                                 DB 00
+00DE1FA5     00                                 DB 00
+00DE1FA6     00                                 DB 00
+00DE1FA7     00                                 DB 00
+00DE1FA8     00                                 DB 00
+00DE1FA9     00                                 DB 00
+00DE1FAA     00                                 DB 00
+00DE1FAB     00                                 DB 00
+00DE1FAC     00                                 DB 00
+00DE1FAD     00                                 DB 00
+00DE1FAE     00                                 DB 00
+00DE1FAF     00                                 DB 00
+00DE1FB0     00                                 DB 00
+00DE1FB1     00                                 DB 00
+00DE1FB2     00                                 DB 00
+00DE1FB3     00                                 DB 00
+00DE1FB4     00                                 DB 00
+00DE1FB5     00                                 DB 00
+00DE1FB6     00                                 DB 00
+00DE1FB7     00                                 DB 00
+00DE1FB8     00                                 DB 00
+00DE1FB9     00                                 DB 00
+00DE1FBA     00                                 DB 00
+00DE1FBB     00                                 DB 00
+00DE1FBC     00                                 DB 00
+00DE1FBD     00                                 DB 00
+00DE1FBE     00                                 DB 00
+00DE1FBF     00                                 DB 00
+00DE1FC0     00                                 DB 00
+00DE1FC1     00                                 DB 00
+00DE1FC2     00                                 DB 00
+00DE1FC3     00                                 DB 00
+00DE1FC4     00                                 DB 00
+00DE1FC5     00                                 DB 00
+00DE1FC6     00                                 DB 00
+00DE1FC7     00                                 DB 00
+00DE1FC8     00                                 DB 00
+00DE1FC9     00                                 DB 00
+00DE1FCA     00                                 DB 00
+00DE1FCB     00                                 DB 00
+00DE1FCC     00                                 DB 00
+00DE1FCD     00                                 DB 00
+00DE1FCE     00                                 DB 00
+00DE1FCF     00                                 DB 00
+00DE1FD0     00                                 DB 00
+00DE1FD1     00                                 DB 00
+00DE1FD2     00                                 DB 00
+00DE1FD3     00                                 DB 00
+00DE1FD4     00                                 DB 00
+00DE1FD5     00                                 DB 00
+00DE1FD6     00                                 DB 00
+00DE1FD7     00                                 DB 00
+00DE1FD8     00                                 DB 00
+00DE1FD9     00                                 DB 00
+00DE1FDA     00                                 DB 00
+00DE1FDB     00                                 DB 00
+00DE1FDC     00                                 DB 00
+00DE1FDD     00                                 DB 00
+00DE1FDE     00                                 DB 00
+00DE1FDF     00                                 DB 00
+00DE1FE0     00                                 DB 00
+00DE1FE1     00                                 DB 00
+00DE1FE2     00                                 DB 00
+00DE1FE3     00                                 DB 00
+00DE1FE4     00                                 DB 00
+00DE1FE5     00                                 DB 00
+00DE1FE6     00                                 DB 00
+00DE1FE7     00                                 DB 00
+00DE1FE8     00                                 DB 00
+00DE1FE9     00                                 DB 00
+00DE1FEA     00                                 DB 00
+00DE1FEB     00                                 DB 00
+00DE1FEC     00                                 DB 00
+00DE1FED     00                                 DB 00
+00DE1FEE     00                                 DB 00
+00DE1FEF     00                                 DB 00
+00DE1FF0     00                                 DB 00
+00DE1FF1     00                                 DB 00
+00DE1FF2     00                                 DB 00
+00DE1FF3     00                                 DB 00
+00DE1FF4     00                                 DB 00
+00DE1FF5     00                                 DB 00
+00DE1FF6     00                                 DB 00
+00DE1FF7     00                                 DB 00
+00DE1FF8     00                                 DB 00
+00DE1FF9     00                                 DB 00
+00DE1FFA     00                                 DB 00
+00DE1FFB     00                                 DB 00
+00DE1FFC     00                                 DB 00
+00DE1FFD     00                                 DB 00
+00DE1FFE     00                                 DB 00
+00DE1FFF     00                                 DB 00
+
