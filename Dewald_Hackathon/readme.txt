@@ -1,0 +1,1 @@
+Dewald Hackathon that Happened on 21st June 2025 hosted by CTFroom
