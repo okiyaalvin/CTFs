@@ -1,0 +1,21 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Sat Jun 21 13:20:23 2025
+Invocation: foremost -i 0.zlib -o output_dir 
+Output directory: /home/recon-k/Downloads/CTF/_stego_rabbit.png.extracted/_CA-0.extracted/output_dir
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: 0.zlib
+Start: Sat Jun 21 13:20:23 2025
+Length: 934 KB (956486 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+Finish: Sat Jun 21 13:20:23 2025
+
+0 FILES EXTRACTED
+	
+------------------------------------------------------------------
+
+Foremost finished at Sat Jun 21 13:20:23 2025
